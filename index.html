@@ -6,6 +6,7 @@
     <title>Alfaza Cell - Android</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
         
@@ -1107,6 +1108,9 @@ function hitungLaporan() {
             <button type="button" class="action-btn" style="flex:1;min-width:0;background:linear-gradient(135deg,#25d366,#128c7e);color:white;border:none;" onclick="shareLaporanTeks()">
                 <i class="fa-brands fa-whatsapp"></i> Share Teks
             </button>
+            <button type="button" class="action-btn" style="flex:1;min-width:0;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:white;border:none;" onclick="downloadLaporanPDF()">
+                <i class="fa-solid fa-file-pdf"></i> Bukti PDF
+            </button>
             <button type="button" class="action-btn btn-red" onclick="resetData()">
                 <i class="fa-solid fa-trash"></i> Reset Data
             </button>
@@ -1422,18 +1426,17 @@ async function shareLaporanGambar() {
             if (result === 'shared') gsToast('✅ Laporan berhasil dibagikan sebagai gambar!');
             return;
         } catch (e) {
-            // lanjut ke fallback
+            // lanjut ke fallback download
         }
 
-        // Fallback: download
+        // Fallback: download langsung
         const downloaded = await tryDownload();
         if (downloaded) {
-            gsToast('✅ Gambar laporan berhasil disimpan!');
-        } else {
-            // Final fallback: tampilkan gambar di modal agar user bisa screenshot / simpan manual
-            const dataUrl = canvas.toDataURL('image/png');
-            showImageModal(dataUrl, data.tgl);
+            gsToast('✅ Gambar PNG berhasil diunduh!');
         }
+        // Selalu tampilkan modal dengan tombol download eksplisit
+        const dataUrl = canvas.toDataURL('image/png');
+        showImageModal(dataUrl, data.tgl);
 
     } catch (err) {
         if (container.parentNode) document.body.removeChild(container);
@@ -1450,28 +1453,209 @@ function showImageModal(dataUrl, tgl) {
     modal.id = 'img-laporan-modal';
     modal.style.cssText = `
         position:fixed;top:0;left:0;right:0;bottom:0;
-        background:rgba(0,0,0,0.85);z-index:99999;
+        background:rgba(0,0,0,0.88);z-index:99999;
         display:flex;flex-direction:column;align-items:center;
         justify-content:flex-start;padding:16px;overflow-y:auto;
     `;
     modal.innerHTML = `
         <div style="max-width:420px;width:100%;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
             <span style="color:white;font-weight:700;font-size:14px;">📋 Laporan ${tgl}</span>
             <button onclick="document.getElementById('img-laporan-modal').remove()"
               style="background:rgba(255,255,255,0.2);color:white;border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
           </div>
-          <p style="color:#ffd;font-size:11px;margin-bottom:10px;text-align:center;">
-            💡 Tekan lama gambar lalu pilih "Simpan Gambar" untuk menyimpan
+
+          <!-- Tombol Download PNG langsung -->
+          <a id="btn-dl-png" href="${dataUrl}" download="Laporan_AlfazaCell_${tgl}.png"
+            style="display:block;width:100%;padding:13px;background:linear-gradient(135deg,#2b67f6,#1a4fc4);color:white;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;margin-bottom:8px;">
+            ⬇️ Download Gambar PNG
+          </a>
+
+          <!-- Tombol Share Gambar via Web Share API -->
+          <button id="btn-share-img" onclick="shareImageFromModal('${dataUrl}','Laporan_AlfazaCell_${tgl}.png')"
+            style="width:100%;padding:13px;background:linear-gradient(135deg,#25d366,#128c7e);color:white;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;">
+            📤 Share / Kirim Gambar
+          </button>
+
+          <p style="color:#ffdd88;font-size:11px;margin-bottom:8px;text-align:center;padding:8px;background:rgba(255,255,255,0.1);border-radius:8px;">
+            💡 Jika tombol Download tidak bekerja, tekan lama gambar di bawah lalu pilih <b>"Simpan Gambar"</b>
           </p>
-          <img src="${dataUrl}" style="width:100%;border-radius:12px;display:block;margin-bottom:12px;" />
+
+          <img id="laporan-img-preview" src="${dataUrl}" style="width:100%;border-radius:12px;display:block;margin-bottom:12px;box-shadow:0 4px 20px rgba(0,0,0,0.5);" />
+
           <button onclick="document.getElementById('img-laporan-modal').remove()"
-            style="width:100%;padding:12px;background:#2b67f6;color:white;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;">
-            Tutup
+            style="width:100%;padding:12px;background:rgba(255,255,255,0.15);color:white;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;">
+            ✕ Tutup
           </button>
         </div>`;
     document.body.appendChild(modal);
-    gsToast('💡 Tekan lama gambar untuk menyimpan / share');
+
+    // Coba auto-trigger download PNG
+    setTimeout(() => {
+        const dlBtn = document.getElementById('btn-dl-png');
+        if (dlBtn) {
+            try { dlBtn.click(); } catch(e) {}
+        }
+    }, 400);
+}
+
+// Helper: share gambar dari modal
+async function shareImageFromModal(dataUrl, fileName) {
+    try {
+        const res = await fetch(dataUrl);
+        const blob = await res.blob();
+        const imgFile = new File([blob], fileName, { type: 'image/png' });
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [imgFile] })) {
+            await navigator.share({ title: fileName, files: [imgFile] });
+            gsToast('✅ Gambar berhasil dibagikan!');
+        } else if (navigator.share) {
+            await navigator.share({ title: fileName, url: dataUrl });
+            gsToast('✅ Berhasil dibagikan!');
+        } else {
+            gsToast('⚠️ Fitur share tidak tersedia di browser ini');
+        }
+    } catch(e) {
+        if (e.name !== 'AbortError') gsToast('⚠️ Gagal share: ' + e.message);
+    }
+}
+
+// ==================== DOWNLOAD PDF ====================
+async function downloadLaporanPDF() {
+    const data = buildLaporanData();
+    gsToast('⏳ Menyiapkan PDF laporan...');
+
+    try {
+        // Buat container HTML untuk PDF
+        const container = document.createElement('div');
+        container.style.cssText = 'width:420px;padding:20px;background:#eef2f9;font-family:sans-serif;position:fixed;left:-9999px;top:0;z-index:-1;';
+
+        container.innerHTML = `
+        <div style="background:white;border-radius:16px;padding:20px;box-shadow:0 4px 15px rgba(43,103,246,0.10);">
+          <div style="text-align:center;margin-bottom:16px;">
+            <div style="background:linear-gradient(135deg,#2b67f6,#1a4fc4);color:white;padding:10px 20px;border-radius:10px;display:inline-block;font-weight:800;font-size:16px;">
+              📊 LAPORAN HARIAN
+            </div>
+            <div style="font-size:13px;color:#888;margin-top:6px;">${data.tglFmt}</div>
+            <div style="font-size:18px;font-weight:800;color:#2b67f6;margin-top:4px;">ALFAZA CELL</div>
+          </div>
+
+          <table style="width:100%;border-collapse:collapse;margin-bottom:12px;">
+            <tr style="background:#f0f4ff;">
+              <td style="padding:8px 10px;font-weight:700;color:#555;font-size:12px;">🏦 Saldo Bank Masuk</td>
+              <td style="padding:8px 10px;text-align:right;font-weight:700;font-size:12px;">Rp ${fmtN(data.tModBank)}</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 10px;font-weight:700;color:#555;font-size:12px;">💵 Saldo Cash Saat Ini</td>
+              <td style="padding:8px 10px;text-align:right;font-weight:700;font-size:12px;">Rp ${fmtN(data.saldo||0)}</td>
+            </tr>
+          </table>
+
+          <div style="background:#f0f4ff;border-radius:10px;padding:10px 12px;margin-bottom:12px;">
+            <div style="font-weight:800;color:#2b67f6;margin-bottom:8px;font-size:13px;">📈 PENJUALAN</div>
+            <table style="width:100%;border-collapse:collapse;">
+              <tr><td style="padding:4px 0;font-size:12px;color:#555;">Bank</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sBank)}</td></tr>
+              <tr><td style="padding:4px 0;font-size:12px;color:#555;">Flip</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sFlip)}</td></tr>
+              <tr><td style="padding:4px 0;font-size:12px;color:#555;">Dana</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sDana)}</td></tr>
+              <tr><td style="padding:4px 0;font-size:12px;color:#555;">App Pulsa</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sApp)}</td></tr>
+              <tr style="background:#dde6ff;"><td style="padding:6px 4px;font-weight:800;font-size:12px;border-radius:4px;">TOTAL PENJUALAN</td><td style="text-align:right;font-weight:800;font-size:12px;color:#2b67f6;">Rp ${fmtN(data.totalPenjualan)}</td></tr>
+            </table>
+          </div>
+
+          <table style="width:100%;border-collapse:collapse;margin-bottom:12px;">
+            <tr><td style="padding:5px 0;font-size:12px;color:#e74c3c;font-weight:700;">📉 Tarik Tunai</td><td style="text-align:right;font-size:12px;color:#e74c3c;font-weight:700;">-Rp ${fmtN(data.sTarik)}</td></tr>
+            <tr><td style="padding:5px 0;font-size:12px;color:#555;">💼 Admin</td><td style="text-align:right;font-size:12px;font-weight:600;color:#f39c12;">Rp ${fmtN(data.totalAdmin)}</td></tr>
+            <tr><td style="padding:5px 0;font-size:12px;color:#555;">🛒 Aksesoris</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sAks)}</td></tr>
+          </table>
+
+          <div style="background:linear-gradient(135deg,#2b67f6,#1a4fc4);color:white;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-weight:700;font-size:13px;">💰 SISA CASH TOTAL</span>
+            <span style="font-weight:800;font-size:16px;">Rp ${fmtN(data.sisaCashSeluruhnya)}</span>
+          </div>
+
+          ${data.fTr.length > 0 ? `
+          <div style="margin-top:14px;">
+            <div style="font-weight:800;color:#2b67f6;margin-bottom:8px;font-size:12px;">📋 RINCIAN TRANSAKSI (${data.fTr.length})</div>
+            <table style="width:100%;border-collapse:collapse;font-size:10px;">
+              <thead><tr style="background:#2b67f6;color:white;">
+                <th style="padding:5px 4px;text-align:left;">Nama</th>
+                <th style="padding:5px 4px;text-align:left;">Kat</th>
+                <th style="padding:5px 4px;text-align:right;">Nominal</th>
+                <th style="padding:5px 4px;text-align:right;">Adm</th>
+              </tr></thead>
+              <tbody>
+                ${data.fTr.map((t,i) => `<tr style="background:${i%2===0?'#f8f9ff':'white'}">
+                  <td style="padding:5px 4px;border-bottom:1px solid #eee;">${t.nm||'-'}</td>
+                  <td style="padding:5px 4px;border-bottom:1px solid #eee;">${t.kat}</td>
+                  <td style="padding:5px 4px;border-bottom:1px solid #eee;text-align:right;">Rp ${fmtN(t.nom)}</td>
+                  <td style="padding:5px 4px;border-bottom:1px solid #eee;text-align:right;color:#f39c12;">Rp ${fmtN(t.adm)}</td>
+                </tr>`).join('')}
+              </tbody>
+            </table>
+          </div>` : ''}
+
+          <div style="text-align:center;font-size:9.5px;color:#aaa;margin-top:10px;padding-bottom:4px;">
+            📄 Alfaza Cell App • ${new Date().toLocaleString('id-ID')}
+          </div>
+        </div>`;
+
+        document.body.appendChild(container);
+
+        const canvas = await html2canvas(container, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#eef2f9',
+            logging: false,
+            width: 420,
+            windowWidth: 460
+        });
+
+        document.body.removeChild(container);
+
+        const imgData = canvas.toDataURL('image/png');
+        const { jsPDF } = window.jspdf;
+        const pdfW = 210; // A4 width mm
+        const pdfH = (canvas.height * pdfW) / canvas.width;
+        const pdf = new jsPDF({ orientation: pdfH > pdfW ? 'p' : 'l', unit: 'mm', format: [pdfW, pdfH] });
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
+
+        const fileName = `Laporan_AlfazaCell_${data.tgl}.pdf`;
+
+        // Coba share PDF
+        try {
+            const pdfBlob = pdf.output('blob');
+            const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+                await navigator.share({ title: `Laporan Alfaza Cell - ${data.tgl}`, files: [pdfFile] });
+                gsToast('✅ PDF berhasil dibagikan!');
+                return;
+            }
+        } catch(e) {
+            if (e.name === 'AbortError') return;
+        }
+
+        // Fallback: download PDF
+        try {
+            pdf.save(fileName);
+            gsToast('✅ PDF laporan berhasil diunduh!');
+        } catch(e) {
+            // Fallback manual: open PDF di tab baru
+            const pdfBlob = pdf.output('blob');
+            const url = URL.createObjectURL(pdfBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+            gsToast('✅ PDF laporan berhasil disimpan!');
+        }
+
+    } catch(err) {
+        gsAlert('Gagal membuat PDF: ' + err.message, '❌ Error');
+    }
 }
 
 // ==================== SHARE TEKS (WhatsApp / SMS / dll) ====================
