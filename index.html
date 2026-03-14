@@ -6,7 +6,6 @@
     <title>Alfaza Cell - Android</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
         
@@ -67,342 +66,340 @@
             margin: 0 auto 12px;
             box-shadow: 0 8px 20px rgba(43,103,246,0.35);
         }
-        .login-logo i { font-size: 26px; color: white; }
-        .login-box h2 { color: var(--primary); margin: 0 0 6px; font-size: 22px; font-weight: 800; }
-        .login-box p { color: #999; font-size: 11px; margin-bottom: 20px; }
-        .login-box select, .login-box input {
-            width: 100%; padding: 13px 14px; margin-bottom: 10px;
-            border-radius: 14px; border: 1.5px solid #e8ecf5;
-            outline: none; font-weight: 600; font-size: 14px;
-            background: #f8f9ff; color: var(--dark);
-            transition: border-color 0.2s;
-        }
-        .login-box select:focus, .login-box input:focus { border-color: var(--primary); }
-        .btn-login {
-            background: linear-gradient(135deg, #2b67f6, #1a4fc4);
-            color: white; border: none; width: 100%;
-            padding: 14px; border-radius: 14px;
-            font-weight: bold; font-size: 15px;
-            cursor: pointer; margin-top: 6px;
-            box-shadow: 0 6px 20px rgba(43,103,246,0.35);
-            letter-spacing: 0.5px;
-        }
+.login-logo i { font-size: 26px; color: white; }
+.login-box h2 { color: var(--primary); margin: 0 0 6px; font-size: 22px; font-weight: 800; }
+.login-box p { color: #999; font-size: 11px; margin-bottom: 20px; }
+.login-box select, .login-box input {
+    width: 100%; padding: 13px 14px; margin-bottom: 10px;
+    border-radius: 14px; border: 1.5px solid #e8ecf5;
+    outline: none; font-weight: 600; font-size: 14px;
+    background: #f8f9ff; color: var(--dark);
+    transition: border-color 0.2s;
+}
+.login-box select:focus, .login-box input:focus { border-color: var(--primary); }
+.btn-login {
+    background: linear-gradient(135deg, #2b67f6, #1a4fc4);
+    color: white; border: none; width: 100%;
+    padding: 14px; border-radius: 14px;
+    font-weight: bold; font-size: 15px;
+    cursor: pointer; margin-top: 6px;
+    box-shadow: 0 6px 20px rgba(43,103,246,0.35);
+    letter-spacing: 0.5px;
+}
 
-        /* ===== HEADER ===== */
-        .header {
-            position: sticky;
-            top: env(safe-area-inset-top);
-            z-index: 1000;
-            background: white;
-            padding: 9px 12px;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 3px 15px rgba(43,103,246,0.10);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            padding-top: max(9px, env(safe-area-inset-top));
-            border-bottom: 2px solid rgba(43,103,246,0.06);
-        }
-        .header-left { font-size: 9px; color: #888; }
-        .header-left b { color: var(--primary); font-size: 10px; display: block; font-weight: 700; }
-        .header-center { text-align: center; }
-        .shop-name { color: var(--dark); font-size: 16px; font-weight: 800; display: block; line-height: 1.2; letter-spacing: -0.3px; }
-        .shop-date { font-size: 8.5px; color: #aaa; display: block; margin-top: 1px; }
-        .header-right { text-align: right; font-size: 9px; color: #888; }
-        .header-right .absensi-label {
-            font-size: 8px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .header-right b { color: var(--orange); font-size: 11px; display: block; font-weight: 800; }
-        .time-display { font-size: 10px; font-weight: 700; color: var(--dark); }
+/* ===== HEADER ===== */
+.header {
+    position: sticky;
+    top: env(safe-area-inset-top);
+    z-index: 1000;
+    background: white;
+    padding: 9px 12px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 3px 15px rgba(43,103,246,0.10);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-top: max(9px, env(safe-area-inset-top));
+    border-bottom: 2px solid rgba(43,103,246,0.06);
+}
+.header-left { font-size: 9px; color: #888; }
+.header-left b { color: var(--primary); font-size: 10px; display: block; font-weight: 700; }
+.header-center { text-align: center; }
+.shop-name { color: var(--dark); font-size: 16px; font-weight: 800; display: block; line-height: 1.2; letter-spacing: -0.3px; }
+.shop-date { font-size: 8.5px; color: #aaa; display: block; margin-top: 1px; }
+.header-right { text-align: right; font-size: 9px; color: #888; }
+.header-right .absensi-label {
+    font-size: 8px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.header-right b { color: var(--orange); font-size: 11px; display: block; font-weight: 800; }
+.time-display { font-size: 10px; font-weight: 700; color: var(--dark); }
 
-        /* ===== SALDO CARDS ===== */
-        .saldo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
-        .saldo-card {
-            padding: 12px 12px 12px 14px;
-            border-radius: 18px;
-            color: white;
-            min-height: 68px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: var(--card-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        .saldo-card::before {
-            content: '';
-            position: absolute;
-            top: -12px; right: -12px;
-            width: 60px; height: 60px;
-            background: rgba(255,255,255,0.12);
-            border-radius: 50%;
-        }
-        .saldo-card::after {
-            content: '';
-            position: absolute;
-            bottom: -18px; right: 14px;
-            width: 45px; height: 45px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 50%;
-        }
-        .saldo-card-top { display: flex; justify-content: space-between; align-items: center; }
-        .saldo-card-icon {
-            width: 28px; height: 28px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 9px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 13px;
-        }
-        .saldo-card span { font-size: 9px; opacity: 0.88; font-weight: 500; }
-        .saldo-card p { margin: 0; font-size: 14px; font-weight: 800; word-break: break-word; line-height: 1.2; letter-spacing: -0.3px; }
-        .bg-blue { background: linear-gradient(145deg, #4a89dc, #2b67f6); }
-        .bg-green { background: linear-gradient(145deg, #62af6d, #3d9149); }
+/* ===== SALDO CARDS ===== */
+.saldo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.saldo-card {
+    padding: 12px 12px 12px 14px;
+    border-radius: 18px;
+    color: white;
+    min-height: 68px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+}
+.saldo-card::before {
+    content: '';
+    position: absolute;
+    top: -12px; right: -12px;
+    width: 60px; height: 60px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+}
+.saldo-card::after {
+    content: '';
+    position: absolute;
+    bottom: -18px; right: 14px;
+    width: 45px; height: 45px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+}
+.saldo-card-top { display: flex; justify-content: space-between; align-items: center; }
+.saldo-card-icon {
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+}
+.saldo-card span { font-size: 9px; opacity: 0.88; font-weight: 500; }
+.saldo-card p { margin: 0; font-size: 14px; font-weight: 800; word-break: break-word; line-height: 1.2; letter-spacing: -0.3px; }
+.bg-blue { background: linear-gradient(145deg, #4a89dc, #2b67f6); }
+.bg-green { background: linear-gradient(145deg, #62af6d, #3d9149); }
 
-        /* ===== STATS MINI ===== */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px; }
-        .stat-card {
-            background: white;
-            padding: 9px 4px 8px;
-            border-radius: 14px;
-            text-align: center;
-            border: 1.5px solid #eef2ff;
-            box-shadow: 0 2px 8px rgba(43,103,246,0.06);
-            position: relative;
-            overflow: hidden;
-        }
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            border-radius: 14px 14px 0 0;
-        }
-        .stat-card.tarik-card::before { background: linear-gradient(90deg, #e74c3c, #ff7675); }
-        .stat-card.aks-card::before { background: linear-gradient(90deg, #5d9cec, #74b9ff); }
-        .stat-card.adm-card::before { background: linear-gradient(90deg, #f39c12, #fdcb6e); }
-        .stat-card i { font-size: 12px; display: block; margin-bottom: 2px; }
-        .stat-card span { font-size: 7.5px; color: #aaa; display: block; margin-bottom: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
-        .stat-card b { font-size: 12px; color: var(--dark); font-weight: 800; }
+/* ===== STATS MINI ===== */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+.stat-card {
+    background: white;
+    padding: 9px 4px 8px;
+    border-radius: 14px;
+    text-align: center;
+    border: 1.5px solid #eef2ff;
+    box-shadow: 0 2px 8px rgba(43,103,246,0.06);
+    position: relative;
+    overflow: hidden;
+}
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+}
+.stat-card.tarik-card::before { background: linear-gradient(90deg, #e74c3c, #ff7675); }
+.stat-card.aks-card::before { background: linear-gradient(90deg, #5d9cec, #74b9ff); }
+.stat-card.adm-card::before { background: linear-gradient(90deg, #f39c12, #fdcb6e); }
+.stat-card i { font-size: 12px; display: block; margin-bottom: 2px; }
+.stat-card span { font-size: 7.5px; color: #aaa; display: block; margin-bottom: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+.stat-card b { font-size: 12px; color: var(--dark); font-weight: 800; }
 
-        /* ===== CATEGORY BUTTONS ===== */
-        .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
-        .category-btn {
-            background: white;
-            border: 1.5px solid #eef2ff;
-            padding: 9px 2px;
-            border-radius: 14px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(43,103,246,0.05);
-        }
-        .category-btn:active { transform: scale(0.96); }
-        .category-btn.active {
-            background: linear-gradient(135deg, #2b67f6, #1a4fc4);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 5px 15px rgba(43,103,246,0.35);
-        }
-        .category-btn i { display: block; font-size: 17px; margin-bottom: 3px; }
-        .category-btn span { font-size: 9px; font-weight: 700; letter-spacing: 0.2px; }
-        .category-btn:not(.active) i { color: var(--primary); }
-        .category-btn:not(.active) span { color: #555; }
+/* ===== CATEGORY BUTTONS ===== */
+.category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
+.category-btn {
+    background: white;
+    border: 1.5px solid #eef2ff;
+    padding: 9px 2px;
+    border-radius: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(43,103,246,0.05);
+}
+.category-btn:active { transform: scale(0.96); }
+.category-btn.active {
+    background: linear-gradient(135deg, #2b67f6, #1a4fc4);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 5px 15px rgba(43,103,246,0.35);
+}
+.category-btn i { display: block; font-size: 17px; margin-bottom: 3px; }
+.category-btn span { font-size: 9px; font-weight: 700; letter-spacing: 0.2px; }
+.category-btn:not(.active) i { color: var(--primary); }
+.category-btn:not(.active) span { color: #555; }
+/* ===== FORM CARD ===== */
+.form-card {
+    background: white;
+    padding: 12px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(43,103,246,0.08);
+    border: 1.5px solid #eef2ff;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #f8f9ff;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border: 1.5px solid #eef2ff;
+    transition: border-color 0.2s;
+}
+.input-group:focus-within { border-color: var(--primary); background: #f0f4ff; }
+.input-group i { color: #aab; font-size: 13px; margin-right: 8px; width: 16px; }
+.input-group input {
+    border: none; background: transparent; width: 100%;
+    outline: none; font-size: 13px; font-weight: 600; color: var(--dark);
+}
+.btn-save {
+    background: linear-gradient(135deg, #2b67f6, #1a4fc4);
+    color: white; border: none; width: 100%;
+    padding: 13px; border-radius: 14px;
+    font-weight: bold; font-size: 14px;
+    cursor: pointer; margin-top: 4px;
+    box-shadow: 0 5px 15px rgba(43,103,246,0.30);
+    letter-spacing: 0.5px;
+}
+.btn-save:active { transform: scale(0.98); }
 
-        /* ===== FORM CARD ===== */
-        .form-card {
-            background: white;
-            padding: 12px;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(43,103,246,0.08);
-            border: 1.5px solid #eef2ff;
-        }
-        .input-group {
-            display: flex;
-            align-items: center;
-            background: #f8f9ff;
-            border-radius: 12px;
-            padding: 10px 12px;
-            margin-bottom: 8px;
-            border: 1.5px solid #eef2ff;
-            transition: border-color 0.2s;
-        }
-        .input-group:focus-within { border-color: var(--primary); background: #f0f4ff; }
-        .input-group i { color: #aab; font-size: 13px; margin-right: 8px; width: 16px; }
-        .input-group input {
-            border: none; background: transparent; width: 100%;
-            outline: none; font-size: 13px; font-weight: 600; color: var(--dark);
-        }
-        .btn-save {
-            background: linear-gradient(135deg, #2b67f6, #1a4fc4);
-            color: white; border: none; width: 100%;
-            padding: 13px; border-radius: 14px;
-            font-weight: bold; font-size: 14px;
-            cursor: pointer; margin-top: 4px;
-            box-shadow: 0 5px 15px rgba(43,103,246,0.30);
-            letter-spacing: 0.5px;
-        }
-        .btn-save:active { transform: scale(0.98); }
+/* ===== PAGE ===== */
+.page { display: none; }
+.page.active { display: block; }
 
-        /* ===== PAGE ===== */
-        .page { display: none; }
-        .page.active { display: block; }
+/* ===== FILTER BUTTONS ===== */
+.filter-grid {
+    display: flex; flex-wrap: wrap;
+    gap: 4px; margin-bottom: 10px;
+}
+.filter-btn {
+    background: white;
+    border: 1.5px solid #dde4f5;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #777;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.filter-btn.active {
+    background: linear-gradient(135deg, #2b67f6, #1a4fc4);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 3px 10px rgba(43,103,246,0.30);
+}
 
-        /* ===== FILTER BUTTONS ===== */
-        .filter-grid {
-            display: flex; flex-wrap: wrap;
-            gap: 4px; margin-bottom: 10px;
-        }
-        .filter-btn {
-            background: white;
-            border: 1.5px solid #dde4f5;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 9px;
-            font-weight: 700;
-            cursor: pointer;
-            color: #777;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .filter-btn.active {
-            background: linear-gradient(135deg, #2b67f6, #1a4fc4);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 3px 10px rgba(43,103,246,0.30);
-        }
+/* ===== SECTION TITLE ===== */
+.section-title {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 7px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 10px 10px 0 0;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+}
+.section-title i { font-size: 11px; opacity: 0.85; }
 
-        /* ===== SECTION TITLE ===== */
-        .section-title {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            padding: 7px 12px;
-            font-size: 10px;
-            font-weight: 700;
-            border-radius: 10px 10px 0 0;
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            letter-spacing: 0.3px;
-        }
-        .section-title i { font-size: 11px; opacity: 0.85; }
+/* ===== HISTORY TABLE ===== */
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 8.5px;
+    margin-bottom: 6px;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    table-layout: fixed;
+    box-shadow: 0 3px 10px rgba(43,103,246,0.07);
+}
+.history-table thead th {
+    background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+    padding: 6px 3px;
+    text-align: left;
+    border-bottom: 2px solid #dde4f5;
+    font-size: 7.5px;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.history-table td {
+    padding: 5px 3px;
+    border-bottom: 1px solid #f5f7ff;
+    word-break: break-word;
+    font-size: 8px;
+    line-height: 1.3;
+    color: #444;
+}
+.history-table tbody tr:nth-child(even) { background: #fafbff; }
+.history-table tbody tr:hover { background: #f0f4ff; }
+.history-table .no-col {
+    font-weight: 800; color: var(--primary); font-size: 7.5px;
+    background: #eef2ff; text-align: center;
+}
+.tr-bank { border-left: 3px solid #4a89dc !important; }
+.tr-flip { border-left: 3px solid #a29bfe !important; }
+.tr-dana { border-left: 3px solid #74b9ff !important; }
+.tr-app  { border-left: 3px solid #55efc4 !important; }
+.tr-tarik { border-left: 3px solid #e74c3c !important; }
+.tr-aks  { border-left: 3px solid #f39c12 !important; }
+.history-table tfoot td {
+    background: linear-gradient(135deg, #f8f9ff, #eef2ff);
+    font-weight: 800; color: var(--primary); font-size: 8px;
+    padding: 6px 4px; border-top: 2px solid #dde4f5;
+}
 
-        /* ===== HISTORY TABLE ===== */
-        .history-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            font-size: 8.5px;
-            margin-bottom: 6px;
-            border-radius: 0 0 10px 10px;
-            overflow: hidden;
-            table-layout: fixed;
-            box-shadow: 0 3px 10px rgba(43,103,246,0.07);
-        }
-        .history-table thead th {
-            background: linear-gradient(135deg, #f0f4ff, #e8eeff);
-            padding: 6px 3px;
-            text-align: left;
-            border-bottom: 2px solid #dde4f5;
-            font-size: 7.5px;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-        .history-table td {
-            padding: 5px 3px;
-            border-bottom: 1px solid #f5f7ff;
-            word-break: break-word;
-            font-size: 8px;
-            line-height: 1.3;
-            color: #444;
-        }
-        .history-table tbody tr:nth-child(even) { background: #fafbff; }
-        .history-table tbody tr:hover { background: #f0f4ff; }
-        .history-table .no-col {
-            font-weight: 800; color: var(--primary); font-size: 7.5px;
-            background: #eef2ff; text-align: center;
-        }
-        .tr-bank { border-left: 3px solid #4a89dc !important; }
-        .tr-flip { border-left: 3px solid #a29bfe !important; }
-        .tr-dana { border-left: 3px solid #74b9ff !important; }
-        .tr-app  { border-left: 3px solid #55efc4 !important; }
-        .tr-tarik { border-left: 3px solid #e74c3c !important; }
-        .tr-aks  { border-left: 3px solid #f39c12 !important; }
-        .history-table tfoot td {
-            background: linear-gradient(135deg, #f8f9ff, #eef2ff);
-            font-weight: 800; color: var(--primary); font-size: 8px;
-            padding: 6px 4px; border-top: 2px solid #dde4f5;
-        }
+/* ===== TOTAL BOX ===== */
+.total-box {
+    background: white;
+    border-radius: 14px;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border: 1.5px solid #eef2ff;
+    box-shadow: 0 3px 10px rgba(43,103,246,0.07);
+}
+.total-row {
+    display: flex; justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dashed #eef2ff;
+    font-size: 10.5px;
+}
+.total-row:last-child { border-bottom: none; }
+.total-label { font-weight: 600; color: #888; font-size: 10px; }
+.total-value { font-weight: 800; color: var(--dark); }
 
-        /* ===== TOTAL BOX ===== */
-        .total-box {
-            background: white;
-            border-radius: 14px;
-            padding: 10px 12px;
-            margin: 8px 0;
-            border: 1.5px solid #eef2ff;
-            box-shadow: 0 3px 10px rgba(43,103,246,0.07);
-        }
-        .total-row {
-            display: flex; justify-content: space-between;
-            padding: 5px 0;
-            border-bottom: 1px dashed #eef2ff;
-            font-size: 10.5px;
-        }
-        .total-row:last-child { border-bottom: none; }
-        .total-label { font-weight: 600; color: #888; font-size: 10px; }
-        .total-value { font-weight: 800; color: var(--dark); }
+/* ===== DATE + SEARCH ===== */
+.history-search-row {
+    display: flex; gap: 6px; margin-bottom: 10px;
+}
+.history-search-row input[type="date"],
+.history-search-row input[type="text"] {
+    flex: 1; padding: 9px 12px;
+    border-radius: 12px;
+    border: 1.5px solid #dde4f5;
+    font-size: 11px; font-weight: 600;
+    background: white; color: var(--dark);
+    outline: none;
+    box-shadow: 0 2px 6px rgba(43,103,246,0.06);
+}
+.history-search-row input:focus { border-color: var(--primary); }
 
-        /* ===== DATE + SEARCH ===== */
-        .history-search-row {
-            display: flex; gap: 6px; margin-bottom: 10px;
-        }
-        .history-search-row input[type="date"],
-        .history-search-row input[type="text"] {
-            flex: 1; padding: 9px 12px;
-            border-radius: 12px;
-            border: 1.5px solid #dde4f5;
-            font-size: 11px; font-weight: 600;
-            background: white; color: var(--dark);
-            outline: none;
-            box-shadow: 0 2px 6px rgba(43,103,246,0.06);
-        }
-        .history-search-row input:focus { border-color: var(--primary); }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: white;
-            display: flex; justify-content: space-around;
-            padding: 4px 0;
-            border-top: none;
-            z-index: 1000;
-            box-shadow: 0 -4px 20px rgba(43,103,246,0.12);
-            padding-bottom: max(4px, env(safe-area-inset-bottom));
-        }
-        .nav-item {
-            text-align: center; color: #ccc; cursor: pointer;
-            flex: 1; border: none; background: none;
-            font-size: 8.5px; padding: 4px 0;
-            transition: all 0.2s; font-weight: 600;
-            position: relative;
-        }
-        .nav-item.active { color: var(--primary); }
-        .nav-item.active::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 30px; height: 3px;
-            background: var(--primary);
-            border-radius: 0 0 4px 4px;
-        }
-        .nav-item i { font-size: 18px; display: block; margin-bottom: 1px; }
-        .nav-item:active { transform: scale(0.92); }
-
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: white;
+    display: flex; justify-content: space-around;
+    padding: 4px 0;
+    border-top: none;
+    z-index: 1000;
+    box-shadow: 0 -4px 20px rgba(43,103,246,0.12);
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
+}
+.nav-item {
+    text-align: center; color: #ccc; cursor: pointer;
+    flex: 1; border: none; background: none;
+    font-size: 8.5px; padding: 4px 0;
+    transition: all 0.2s; font-weight: 600;
+    position: relative;
+}
+.nav-item.active { color: var(--primary); }
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 30px; height: 3px;
+    background: var(--primary);
+    border-radius: 0 0 4px 4px;
+}
+.nav-item i { font-size: 18px; display: block; margin-bottom: 1px; }
+.nav-item:active { transform: scale(0.92); }
         /* ===== MODAL ===== */
         .modal {
             display: none; position: fixed;
@@ -452,14 +449,18 @@
 
         /* ===== REPORT ===== */
         .report-card {
-            background: white; border-radius: 18px;
-            padding: 14px; margin-bottom: 10px;
+            background: white;
+            border-radius: 18px;
+            padding: 14px;
+            margin-bottom: 10px;
             box-shadow: 0 4px 15px rgba(43,103,246,0.08);
             border: 1.5px solid #eef2ff;
         }
         .report-row {
-            display: flex; justify-content: space-between;
-            padding: 5px 0; border-bottom: 1px solid #f5f7ff;
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #f5f7ff;
             font-size: 11px;
         }
         .report-row:last-child { border-bottom: none; }
@@ -470,10 +471,73 @@
             padding: 14px;
             border-radius: 0 0 16px 16px;
         }
-        .report-total-row { display: flex; justify-content: space-between; align-items: center; }
+        .report-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
         .report-total-label { font-size: 11px; font-weight: 700; }
         .report-total-value { font-size: 16px; font-weight: 800; }
         .report-footer { font-size: 8px; color: rgba(255,255,255,0.75); margin-top: 5px; text-align: center; }
+        
+        /* Style untuk history saldo real */
+        .history-saldo-real {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1.5px solid #dde4f5;
+        }
+        .history-saldo-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 4px;
+            border-bottom: 1px dashed #dde4f5;
+            font-size: 10px;
+        }
+        .history-saldo-item:last-child {
+            border-bottom: none;
+        }
+        .history-saldo-time {
+            color: #888;
+            font-size: 9px;
+        }
+        .history-saldo-nominal {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .history-saldo-ket {
+            font-size: 9px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Style untuk baris perbandingan saldo */
+        .comparison-row {
+            background: #f0f4ff;
+            border-radius: 8px;
+            padding: 8px 6px;
+            margin-top: 8px;
+            border-left: 3px solid var(--primary);
+        }
+        .comparison-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            padding: 3px 0;
+        }
+        .comparison-label { font-weight: 600; color: var(--dark); }
+        .comparison-value { font-weight: 800; color: var(--primary); }
+        .comparison-diff {
+            font-size: 10px;
+            color: var(--red);
+            font-weight: 700;
+            text-align: right;
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px dashed #ccc;
+        }
 
         /* ===== ACTION BUTTONS ===== */
         .action-buttons { display: flex; gap: 6px; margin-top: 10px; }
@@ -488,8 +552,8 @@
         }
         .action-btn:active { transform: scale(0.96); }
         .btn-orange { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; }
-        .btn-green  { background: linear-gradient(135deg, #4CAF50, #388E3C); color: white; }
-        .btn-red    { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
+        .btn-green  { background: linear-gradient(135deg, #25d366, #128c7e); color: white; }
+        .btn-blue   { background: linear-gradient(135deg, #2b67f6, #1a4fc4); color: white; }
 
         /* ===== EMPTY STATE ===== */
         .empty-state {
@@ -500,7 +564,6 @@
     </style>
 </head>
 <body>
-
 <!-- ==================== LOGIN PAGE ==================== -->
 <div id="page-login">
     <div class="login-box">
@@ -550,7 +613,7 @@
                 </div>
                 <div class="saldo-card bg-green">
                     <div class="saldo-card-top">
-                        <span>Saldo Cash</span>
+                        <span>Saldo Cash Penjualan</span>
                         <div class="saldo-card-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
                     </div>
                     <p id="s-cash">Rp 0</p>
@@ -594,7 +657,6 @@
                     <i class="fa-solid fa-headset"></i><span>Aks</span>
                 </div>
             </div>
-
             <!-- Form -->
             <div class="form-card">
                 <div class="input-group">
@@ -660,14 +722,16 @@
                 <div class="filter-btn active" data-filter-ts="all" onclick="filterTambahSaldo('all', this)">Semua</div>
                 <div class="filter-btn" data-filter-ts="Bank" onclick="filterTambahSaldo('Bank', this)">🏦 Bank</div>
                 <div class="filter-btn" data-filter-ts="Cash" onclick="filterTambahSaldo('Cash', this)">💵 Cash</div>
+                <div class="filter-btn" data-filter-ts="Saldo Real App" onclick="filterTambahSaldo('Saldo Real App', this)">📊 Saldo Real</div>
             </div>
             <table class="history-table">
                 <thead>
                     <tr>
                         <th style="width:8%; text-align:center;">#</th>
-                        <th style="width:25%">Jam</th>
-                        <th style="width:27%">Jenis</th>
-                        <th style="width:40%">Nominal</th>
+                        <th style="width:20%">Jam</th>
+                        <th style="width:25%">Jenis</th>
+                        <th style="width:27%">Nominal</th>
+                        <th style="width:20%">Ket</th>
                     </tr>
                 </thead>
                 <tbody id="list-tambah-saldo"></tbody>
@@ -700,7 +764,6 @@
         </button>
     </div>
 </div>
-
 <!-- ===== MODAL SALDO ===== -->
 <div id="modalPilihSaldo" class="modal" style="display:none;">
     <div class="modal-content">
@@ -724,6 +787,19 @@
         <div class="modal-button-group">
             <button class="modal-button red" id="modalBatal"><i class="fa-solid fa-xmark"></i> Batal</button>
             <button class="modal-button green" id="modalOke"><i class="fa-solid fa-check"></i> Oke</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL SALDO REAL APP -->
+<div id="modalSaldoReal" class="modal" style="display:none;">
+    <div class="modal-content wide">
+        <div class="modal-title">🏦 Saldo Real App</div>
+        <input type="text" class="modal-input" id="modalSaldoRealInput" placeholder="Masukkan nominal" inputmode="numeric" onkeyup="fmt(this)">
+        <input type="text" class="modal-input" id="modalSaldoRealKet" placeholder="Keterangan (opsional)" style="margin-top:0;">
+        <div class="modal-button-group">
+            <button class="modal-button red" onclick="tutupModalSaldoReal()"><i class="fa-solid fa-xmark"></i> Batal</button>
+            <button class="modal-button green" onclick="simpanSaldoReal()"><i class="fa-solid fa-check"></i> Simpan</button>
         </div>
     </div>
 </div>
@@ -822,7 +898,7 @@ function exitAppSafely(){
 }
 
 // ==================== DATA & STATE ====================
-let mainDB = JSON.parse(localStorage.getItem('alfaza_v14_4')) || {
+let mainDB = JSON.parse(localStorage.getItem('alfaza_v14_7')) || {
     "KASIR 01": { bank:0, cash:0, tarik:0, aks:0, admin:0, loginTime: "", tr:[], ts:[] },
     "KASIR 02": { bank:0, cash:0, tarik:0, aks:0, admin:0, loginTime: "", tr:[], ts:[] }
 };
@@ -868,6 +944,13 @@ function initEvents() {
         modalInput.addEventListener('keyup', e => { e.target.value = formatAngka(e.target.value); });
         modalInput.addEventListener('keypress', e => { if(e.key=='Enter'){ e.preventDefault(); prosesTambahSaldo(); }});
     }
+    
+    const modalSaldoRealInput = document.getElementById('modalSaldoRealInput');
+    if(modalSaldoRealInput) {
+        modalSaldoRealInput.addEventListener('keyup', e => { e.target.value = formatAngka(e.target.value); });
+        modalSaldoRealInput.addEventListener('keypress', e => { if(e.key=='Enter'){ e.preventDefault(); simpanSaldoReal(); }});
+    }
+    
     document.getElementById('modalBatal').onclick = tutupModalTambahSaldo;
     document.getElementById('modalOke').onclick = prosesTambahSaldo;
 }
@@ -912,9 +995,18 @@ function simpanTr() {
     const tgl = now.toISOString().split('T')[0];
     const jam = now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
 
-    if(katAktif === 'TARIK TUNAI') { db.cash -= nom; db.tarik += nom; }
-    else if(katAktif === 'AKSESORIS') { db.cash += nom; db.aks += nom; }
-    else { db.bank -= nom; db.cash += nom; }
+    if(katAktif === 'TARIK TUNAI') { 
+        db.cash -= nom; 
+        db.tarik += nom; 
+    }
+    else if(katAktif === 'AKSESORIS') { 
+        db.aks += nom; 
+        // Cash TIDAK bertambah untuk aksesoris
+    }
+    else if(katAktif === 'BANK' || katAktif === 'FLIP' || katAktif === 'DANA' || katAktif === 'APP PULSA') { 
+        db.bank -= nom; 
+        db.cash += nom; 
+    }
 
     db.admin += adm;
     db.tr.unshift({ tgl, jam, kat: katAktif, nom, adm, ket });
@@ -944,7 +1036,7 @@ function prosesTambahSaldo() {
         const nom = toInt(raw);
         const now = new Date();
         if(tambahSaldoJenis === 'Bank') db.bank += nom; else db.cash += nom;
-        db.ts.unshift({ tgl: now.toISOString().split('T')[0], jam: now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'}), jenis: tambahSaldoJenis, nom });
+        db.ts.unshift({ tgl: now.toISOString().split('T')[0], jam: now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'}), jenis: tambahSaldoJenis, nom, ket: '' });
         refresh();
         gsToast('✅ Saldo berhasil ditambahkan');
     }
@@ -952,6 +1044,41 @@ function prosesTambahSaldo() {
 }
 
 function tutupModalTambahSaldo() { document.getElementById('modalTambahSaldo').style.display = 'none'; }
+
+// ==================== SALDO REAL APP ====================
+function bukaModalSaldoReal() {
+    document.getElementById('modalSaldoRealInput').value = '';
+    document.getElementById('modalSaldoRealKet').value = '';
+    document.getElementById('modalSaldoReal').style.display = 'flex';
+    document.getElementById('modalSaldoRealInput').focus();
+}
+
+function tutupModalSaldoReal() {
+    document.getElementById('modalSaldoReal').style.display = 'none';
+}
+
+function simpanSaldoReal() {
+    const raw = document.getElementById('modalSaldoRealInput').value.replace(/\./g, '');
+    const ket = document.getElementById('modalSaldoRealKet').value;
+    
+    if(raw) {
+        const nom = toInt(raw);
+        const now = new Date();
+        db.ts.unshift({ 
+            tgl: now.toISOString().split('T')[0], 
+            jam: now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'}), 
+            jenis: 'Saldo Real App', 
+            nom,
+            ket
+        });
+        refresh();
+        gsToast('✅ Saldo Real App berhasil disimpan');
+    }
+    tutupModalSaldoReal();
+    if(document.getElementById('page-report').classList.contains('active')) {
+        hitungLaporan();
+    }
+}
 
 // ==================== FILTER ====================
 function filterKategori(k, el) { filterKategoriAktif = k; updateFilterActive('#filter-transaksi', el); filterRiwayat(); }
@@ -962,7 +1089,7 @@ function updateFilterActive(selector, el) {
     el.classList.add('active');
 }
 
-// ==================== FILTER RIWAYAT (dengan nomor urut kronologis) ====================
+// ==================== FILTER RIWAYAT ====================
 function filterRiwayat() {
     const tgl = document.getElementById('f-tgl').value;
     const cari = document.getElementById('f-cari').value.toLowerCase();
@@ -1019,19 +1146,20 @@ function filterRiwayat() {
 
     let totalTsFiltered = 0;
     filteredTs.forEach(i => {
-        const tsClass = i.jenis === 'Bank' ? 'tr-bank' : 'tr-aks';
+        const tsClass = i.jenis === 'Bank' ? 'tr-bank' : (i.jenis === 'Cash' ? 'tr-aks' : 'tr-bank');
         totalTsFiltered += i.nom;
         hTs += `<tr class="${tsClass}">
             <td class="no-col" style="text-align:center">${i.no}</td>
             <td>${i.jam}</td>
             <td>${i.jenis}</td>
             <td>Rp ${fmtN(i.nom)}</td>
+            <td>${i.ket || '-'}</td>
         </tr>`;
     });
 
     if (filteredTs.length > 0) {
         hTs += `<tr>
-            <td colspan="3" style="text-align:right; font-weight:800; color:#2b67f6; padding:5px 4px; background:#f0f4ff; font-size:8px;">TOTAL (${filteredTs.length})</td>
+            <td colspan="4" style="text-align:right; font-weight:800; color:#2b67f6; padding:5px 4px; background:#f0f4ff; font-size:8px;">TOTAL (${filteredTs.length})</td>
             <td style="font-weight:800; color:#2b67f6; font-size:8px; background:#f0f4ff;">Rp ${fmtN(totalTsFiltered)}</td>
         </tr>`;
     }
@@ -1039,7 +1167,7 @@ function filterRiwayat() {
     document.getElementById('list-riwayat').innerHTML = hTr ||
         `<tr><td colspan="6"><div class="empty-state"><i class="fa-solid fa-inbox"></i>Tidak ada transaksi</div></td></tr>`;
     document.getElementById('list-tambah-saldo').innerHTML = hTs ||
-        `<tr><td colspan="4"><div class="empty-state"><i class="fa-solid fa-inbox"></i>Tidak ada tambah saldo</div></td></tr>`;
+        `<tr><td colspan="5"><div class="empty-state"><i class="fa-solid fa-inbox"></i>Tidak ada tambah saldo</div></td></tr>`;
 }
 
 // ==================== LAPORAN ====================
@@ -1057,7 +1185,35 @@ function hitungLaporan() {
     let tModBank = fTs.filter(x => x.jenis === 'Bank').reduce((a,b) => a + b.nom, 0);
 
     let totalAdmin = fTr.reduce((a,b) => a + b.adm, 0);
-    let sisaCashSeluruhnya = db.cash + totalAdmin + sAks;
+    // Sisa Cash Total = Cash + Admin + Aksesoris
+    let sisaCashTotal = db.cash + totalAdmin + sAks;
+    
+    // Ambil semua history Saldo Real App untuk hari ini
+    const saldoRealHistory = fTs.filter(x => x.jenis === 'Saldo Real App');
+    // Hitung TOTAL seluruh nominal Saldo Real App (bukan hanya yang terakhir)
+    let totalSaldoReal = saldoRealHistory.reduce((sum, item) => sum + item.nom, 0);
+
+    // Buat HTML untuk history saldo real
+    let saldoRealHistoryHtml = '';
+    if (saldoRealHistory.length > 0) {
+        saldoRealHistoryHtml = '<div class="history-saldo-real"><div style="font-weight:700; color:var(--primary); margin-bottom:5px; font-size:11px;">📋 Riwayat Saldo Real App:</div>';
+        saldoRealHistory.forEach((item, index) => {
+            saldoRealHistoryHtml += `
+                <div class="history-saldo-item">
+                    <span><span class="history-saldo-time">${item.jam}</span> ${item.ket ? '<span class="history-saldo-ket"> - ' + item.ket + '</span>' : ''}</span>
+                    <span class="history-saldo-nominal">Rp ${fmtN(item.nom)}</span>
+                </div>
+            `;
+        });
+        // Tambahkan total di akhir
+        saldoRealHistoryHtml += `
+            <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:4px; border-top:1px solid var(--primary); font-weight:700; color:var(--primary);">
+                <span>TOTAL SALDO REAL:</span>
+                <span>Rp ${fmtN(totalSaldoReal)}</span>
+            </div>
+        `;
+        saldoRealHistoryHtml += '</div>';
+    }
 
     document.getElementById('rep-area').innerHTML = `
         <div class="report-card">
@@ -1067,8 +1223,7 @@ function hitungLaporan() {
             <p style="text-align:center; color:#aaa; margin-bottom:12px; font-size:10px;">${tgl}</p>
 
             <div class="report-row"><span>🏦 Saldo Bank Masuk (Tambah)</span><b>Rp ${fmtN(tModBank)}</b></div>
-            <div class="report-row"><span>💵 Saldo Cash Saat Ini</span><b>Rp ${fmtN(db.cash)}</b></div>
-
+            
             <h4 style="margin:10px 0 5px; font-size:11px; color:var(--primary); font-weight:800;">📊 Penjualan:</h4>
             <div class="report-row"><span>🏦 Bank</span><b>Rp ${fmtN(sBank)}</b></div>
             <div class="report-row"><span>🔀 Flip</span><b>Rp ${fmtN(sFlip)}</b></div>
@@ -1080,8 +1235,9 @@ function hitungLaporan() {
             </div>
 
             <div class="report-row" style="color:var(--red);"><span>💸 Tarik Tunai</span><b>-Rp ${fmtN(sTarik)}</b></div>
+            <!-- Sisa Cash Penjualan murni cash penjualan (tidak termasuk admin & aksesoris) -->
             <div class="report-row" style="background:#f0fff4; border-radius:8px; padding:6px 4px;">
-                <span>💰 Sisa Cash Toko</span><b style="color:#2d8a47">Rp ${fmtN(db.cash)}</b>
+                <span>💰 Sisa Cash Penjualan</span><b style="color:#2d8a47">Rp ${fmtN(db.cash)}</b>
             </div>
 
             <div class="report-row"><span>📋 Admin</span><b style="color:var(--orange)">Rp ${fmtN(totalAdmin)}</b></div>
@@ -1090,48 +1246,67 @@ function hitungLaporan() {
             <div class="report-total-section">
                 <div class="report-total-row">
                     <span class="report-total-label">💰 SISA CASH TOTAL</span>
-                    <span class="report-total-value">Rp ${fmtN(sisaCashSeluruhnya)}</span>
+                    <span class="report-total-value">Rp ${fmtN(sisaCashTotal)}</span>
                 </div>
                 <div class="report-footer">
-                    Cash: Rp ${fmtN(db.cash)} + Admin: Rp ${fmtN(totalAdmin)} + Aks: Rp ${fmtN(sAks)}
+                    Sisa Cash Penjualan: Rp ${fmtN(db.cash)} + Admin: Rp ${fmtN(totalAdmin)} + Aksesoris: Rp ${fmtN(sAks)}
                 </div>
             </div>
+            
+            <!-- PERBANDINGAN SALDO BANK dengan TOTAL SALDO REAL -->
+            <div style="margin-top:15px; padding:10px; background:#f8f9ff; border-radius:12px; border:1.5px solid #dde4f5;">
+                <div style="font-weight:800; color:var(--primary); margin-bottom:8px; font-size:12px;">
+                    <i class="fa-solid fa-scale-balanced"></i> CEK KESESUAIAN SALDO BANK
+                </div>
+                <div class="comparison-item">
+                    <span class="comparison-label">🏦 Saldo Bank Saat Ini (Catatan):</span>
+                    <span class="comparison-value">Rp ${fmtN(db.bank)}</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="comparison-label">💰 TOTAL Saldo Real Aplikasi:</span>
+                    <span class="comparison-value">Rp ${fmtN(totalSaldoReal)}</span>
+                </div>
+                <div class="comparison-diff">
+                    ${db.bank !== totalSaldoReal ? 
+                        `⚠️ Selisih: Rp ${fmtN(Math.abs(db.bank - totalSaldoReal))} (${db.bank > totalSaldoReal ? 'Lebih catatan' : 'Kurang catatan'})` : 
+                        '✅ Sesuai'}
+                </div>
+            </div>
+            
+            <!-- HISTORY SALDO REAL APP -->
+            ${saldoRealHistoryHtml}
         </div>
 
         <div class="action-buttons">
             <button type="button" class="action-btn btn-orange" onclick="resetSaldo()">
                 <i class="fa-solid fa-rotate-right"></i> Reset Saldo
             </button>
-            <button type="button" class="action-btn btn-green" onclick="shareLaporanGambar()" style="flex:1;min-width:0;">
-                <i class="fa-solid fa-image"></i> Share Foto
-            </button>
-            <button type="button" class="action-btn" style="flex:1;min-width:0;background:linear-gradient(135deg,#25d366,#128c7e);color:white;border:none;" onclick="shareLaporanTeks()">
+            <button type="button" class="action-btn btn-green" onclick="shareLaporanTeks()">
                 <i class="fa-brands fa-whatsapp"></i> Share Teks
             </button>
-            <button type="button" class="action-btn" style="flex:1;min-width:0;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:white;border:none;" onclick="downloadLaporanPDF()">
-                <i class="fa-solid fa-file-pdf"></i> Bukti PDF
-            </button>
-            <button type="button" class="action-btn btn-red" onclick="resetData()">
-                <i class="fa-solid fa-trash"></i> Reset Data
+            <button type="button" class="action-btn btn-blue" onclick="bukaModalSaldoReal()">
+                <i class="fa-solid fa-pencil"></i> Saldo Real App
             </button>
         </div>
     `;
 }
 
-// ==================== HELPERS LAPORAN ====================
-function buildLaporanData() {
+// ==================== SHARE TEKS (WhatsApp / SMS / dll) ====================
+async function shareLaporanTeks() {
     const tgl = document.getElementById('f-tgl').value;
     const fTr = db.tr.filter(x => x.tgl === tgl);
     const fTs = db.ts.filter(x => x.tgl === tgl);
-
+    
     const getSum = k => fTr.filter(x => x.kat === k).reduce((a,b) => a + b.nom, 0);
     let sBank = getSum('BANK'), sFlip = getSum('FLIP'), sDana = getSum('DANA'), sApp = getSum('APP PULSA');
     let sAks = getSum('AKSESORIS'), sTarik = getSum('TARIK TUNAI');
     let totalPenjualan = sBank + sFlip + sDana + sApp;
-    let tModCash = fTs.filter(x => x.jenis === 'Cash').reduce((a,b) => a + b.nom, 0);
-    let tModBank = fTs.filter(x => x.jenis === 'Bank').reduce((a,b) => a + b.nom, 0);
     let totalAdmin = fTr.reduce((a,b) => a + b.adm, 0);
-    let sisaCashSeluruhnya = db.cash + totalAdmin + sAks;
+    let sisaCashTotal = db.cash + totalAdmin + sAks;
+    
+    const saldoRealHistory = fTs.filter(x => x.jenis === 'Saldo Real App');
+    // Hitung TOTAL Saldo Real (bukan hanya yang terakhir)
+    let totalSaldoReal = saldoRealHistory.reduce((sum, item) => sum + item.nom, 0);
 
     let tglFmt = tgl;
     try {
@@ -1142,565 +1317,62 @@ function buildLaporanData() {
         tglFmt = `${hariNama}, ${d.getDate()} ${bln} ${d.getFullYear()}`;
     } catch(e) {}
 
-    let rowsTrx = '';
-    if (fTr.length > 0) {
-        rowsTrx = `
-        <div class="section-title">📋 Rincian Transaksi</div>
-        <table class="trx-table">
-          <thead><tr><th>Nama</th><th>Kat</th><th>Nominal</th><th>Admin</th></tr></thead>
-          <tbody>
-            ${fTr.map(t => `<tr>
-              <td>${t.nm || '-'}</td>
-              <td><span class="badge">${t.kat}</span></td>
-              <td class="num">Rp ${fmtN(t.nom)}</td>
-              <td class="num adm">Rp ${fmtN(t.adm)}</td>
-            </tr>`).join('')}
-          </tbody>
-        </table>`;
-    }
-
-    return { tgl, tglFmt, fTr, sBank, sFlip, sDana, sApp, sAks, sTarik,
-             totalPenjualan, tModBank, tModCash, totalAdmin, sisaCashSeluruhnya, rowsTrx };
-}
-
-function buildLaporanHTML(d) {
-    return `<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laporan Alfaza Cell - ${d.tgl}</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: #eef2f9; min-height: 100vh; padding: 16px; color: #2c3e50;
-  }
-  .wrapper { max-width: 420px; margin: 0 auto; }
-  .header {
-    background: linear-gradient(135deg, #2b67f6, #1a4fc4);
-    color: white; border-radius: 20px; padding: 20px 18px 16px;
-    text-align: center; margin-bottom: 14px;
-    box-shadow: 0 6px 20px rgba(43,103,246,0.30);
-  }
-  .header .logo { font-size: 28px; margin-bottom: 4px; }
-  .header h1 { font-size: 17px; font-weight: 800; letter-spacing: 0.5px; }
-  .header .tgl { font-size: 11px; opacity: 0.85; margin-top: 4px; }
-  .card {
-    background: white; border-radius: 18px; padding: 14px;
-    margin-bottom: 12px; box-shadow: 0 4px 15px rgba(43,103,246,0.08);
-    border: 1.5px solid #eef2ff;
-  }
-  .section-title { font-size: 11px; font-weight: 800; color: #2b67f6; margin-bottom: 8px; }
-  .row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 6px 0; border-bottom: 1px solid #f5f7ff; font-size: 11.5px;
-  }
-  .row:last-child { border-bottom: none; }
-  .row b { font-weight: 700; }
-  .row-total {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 6px 4px; background: #f0f4ff; border-radius: 8px;
-    margin: 4px 0; font-size: 11.5px;
-  }
-  .row-total .lbl { font-weight: 800; color: #2b67f6; }
-  .row-total .val { font-weight: 800; color: #2b67f6; }
-  .row-cash {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 6px 4px; background: #f0fff4; border-radius: 8px;
-    margin: 4px 0; font-size: 11.5px;
-  }
-  .row-cash .val { font-weight: 800; color: #2d8a47; }
-  .row-red { color: #e74c3c; }
-  .row-orange b { color: #f39c12; }
-  .total-section {
-    background: linear-gradient(135deg, #2b67f6, #1a4fc4); color: white;
-    margin: 12px -14px -14px; padding: 16px 14px 14px;
-    border-radius: 0 0 16px 16px;
-  }
-  .total-row { display: flex; justify-content: space-between; align-items: center; }
-  .total-label { font-size: 12px; font-weight: 700; }
-  .total-value { font-size: 20px; font-weight: 900; }
-  .total-footer { font-size: 9px; color: rgba(255,255,255,0.75); margin-top: 6px; text-align: center; }
-  .trx-table { width: 100%; border-collapse: collapse; font-size: 10.5px; margin-top: 4px; }
-  .trx-table thead tr { background: #f0f4ff; }
-  .trx-table th { padding: 5px 4px; text-align: left; font-weight: 700; color: #2b67f6; border-bottom: 2px solid #dde6ff; font-size: 10px; }
-  .trx-table td { padding: 5px 4px; border-bottom: 1px solid #f5f7ff; }
-  .trx-table tr:last-child td { border-bottom: none; }
-  .trx-table .num { text-align: right; font-weight: 600; }
-  .trx-table .adm { color: #f39c12; }
-  .badge { background: #eef2ff; color: #2b67f6; border-radius: 6px; padding: 1px 5px; font-size: 9px; font-weight: 700; }
-  .footer-stamp { text-align: center; font-size: 9.5px; color: #aaa; margin-top: 8px; padding-bottom: 8px; }
-  .divider { height: 1px; background: #eef2ff; margin: 8px 0; }
-</style>
-</head>
-<body>
-<div class="wrapper">
-  <div class="header">
-    <div class="logo">📱</div>
-    <h1>ALFAZA CELL</h1>
-    <div class="tgl">LAPORAN HARIAN &nbsp;|&nbsp; ${d.tglFmt}</div>
-  </div>
-  <div class="card">
-    <div class="section-title">💰 Saldo</div>
-    <div class="row"><span>🏦 Saldo Bank Masuk (Tambah)</span><b>Rp ${fmtN(d.tModBank)}</b></div>
-    <div class="row"><span>💵 Saldo Cash Saat Ini</span><b>Rp ${fmtN(db.cash)}</b></div>
-    <div class="divider"></div>
-    <div class="section-title">📊 Penjualan</div>
-    <div class="row"><span>🏦 Bank</span><b>Rp ${fmtN(d.sBank)}</b></div>
-    <div class="row"><span>🔀 Flip</span><b>Rp ${fmtN(d.sFlip)}</b></div>
-    <div class="row"><span>👛 Dana</span><b>Rp ${fmtN(d.sDana)}</b></div>
-    <div class="row"><span>📱 App Pulsa</span><b>Rp ${fmtN(d.sApp)}</b></div>
-    <div class="row-total">
-      <span class="lbl">TOTAL PENJUALAN</span>
-      <span class="val">Rp ${fmtN(d.totalPenjualan)}</span>
-    </div>
-    <div class="divider"></div>
-    <div class="section-title">📉 Pengeluaran & Pendapatan</div>
-    <div class="row row-red"><span>💸 Tarik Tunai</span><b>-Rp ${fmtN(d.sTarik)}</b></div>
-    <div class="row-cash"><span>💰 Sisa Cash Toko</span><span class="val">Rp ${fmtN(db.cash)}</span></div>
-    <div class="row row-orange"><span>📋 Admin</span><b>Rp ${fmtN(d.totalAdmin)}</b></div>
-    <div class="row"><span>🎧 Aksesoris</span><b>Rp ${fmtN(d.sAks)}</b></div>
-    <div class="total-section">
-      <div class="total-row">
-        <span class="total-label">💰 SISA CASH TOTAL</span>
-        <span class="total-value">Rp ${fmtN(d.sisaCashSeluruhnya)}</span>
-      </div>
-      <div class="total-footer">
-        Cash: Rp ${fmtN(db.cash)} + Admin: Rp ${fmtN(d.totalAdmin)} + Aks: Rp ${fmtN(d.sAks)}
-      </div>
-    </div>
-  </div>
-  ${d.rowsTrx ? `<div class="card">${d.rowsTrx}</div>` : ''}
-  <div class="footer-stamp">📄 Digenerate oleh Alfaza Cell App &nbsp;•&nbsp; ${new Date().toLocaleString('id-ID')}</div>
-</div>
-</body>
-</html>`;
-}
-
-// ==================== SHARE SEBAGAI GAMBAR (PNG) ====================
-async function shareLaporanGambar() {
-    const data = buildLaporanData();
-
-    // Buat container render sementara (offscreen)
-    const container = document.createElement('div');
-    container.style.cssText = `
-        position: fixed;
-        left: -9999px; top: 0;
-        width: 420px;
-        background: #eef2f9;
-        padding: 16px;
-        font-family: 'Segoe UI', system-ui, sans-serif;
-        z-index: -1;
-    `;
-    container.innerHTML = `
-    <div style="max-width:420px;margin:0 auto;">
-      <div style="background:linear-gradient(135deg,#2b67f6,#1a4fc4);color:white;border-radius:20px;padding:20px 18px 16px;text-align:center;margin-bottom:14px;box-shadow:0 6px 20px rgba(43,103,246,0.30);">
-        <div style="font-size:28px;margin-bottom:4px;">📱</div>
-        <h1 style="font-size:17px;font-weight:800;letter-spacing:0.5px;margin:0;">ALFAZA CELL</h1>
-        <div style="font-size:11px;opacity:0.85;margin-top:4px;">LAPORAN HARIAN &nbsp;|&nbsp; ${data.tglFmt}</div>
-      </div>
-
-      <div style="background:white;border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 4px 15px rgba(43,103,246,0.08);border:1.5px solid #eef2ff;">
-        <div style="font-size:11px;font-weight:800;color:#2b67f6;margin-bottom:8px;">💰 Saldo</div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f7ff;font-size:11.5px;"><span>🏦 Saldo Bank Masuk</span><b>Rp ${fmtN(data.tModBank)}</b></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:11.5px;"><span>💵 Saldo Cash Saat Ini</span><b>Rp ${fmtN(db.cash)}</b></div>
-
-        <div style="height:1px;background:#eef2ff;margin:8px 0;"></div>
-        <div style="font-size:11px;font-weight:800;color:#2b67f6;margin-bottom:8px;">📊 Penjualan</div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f7ff;font-size:11.5px;"><span>🏦 Bank</span><b>Rp ${fmtN(data.sBank)}</b></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f7ff;font-size:11.5px;"><span>🔀 Flip</span><b>Rp ${fmtN(data.sFlip)}</b></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f7ff;font-size:11.5px;"><span>👛 Dana</span><b>Rp ${fmtN(data.sDana)}</b></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f7ff;font-size:11.5px;"><span>📱 App Pulsa</span><b>Rp ${fmtN(data.sApp)}</b></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 4px;background:#f0f4ff;border-radius:8px;margin:4px 0;font-size:11.5px;">
-          <span style="font-weight:800;color:#2b67f6;">TOTAL PENJUALAN</span>
-          <span style="font-weight:800;color:#2b67f6;">Rp ${fmtN(data.totalPenjualan)}</span>
-        </div>
-
-        <div style="height:1px;background:#eef2ff;margin:8px 0;"></div>
-        <div style="font-size:11px;font-weight:800;color:#2b67f6;margin-bottom:8px;">📉 Pengeluaran & Pendapatan</div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f7ff;font-size:11.5px;color:#e74c3c;"><span>💸 Tarik Tunai</span><b>-Rp ${fmtN(data.sTarik)}</b></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 4px;background:#f0fff4;border-radius:8px;margin:4px 0;font-size:11.5px;"><span>💰 Sisa Cash Toko</span><span style="font-weight:800;color:#2d8a47;">Rp ${fmtN(db.cash)}</span></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f7ff;font-size:11.5px;"><span>📋 Admin</span><b style="color:#f39c12;">Rp ${fmtN(data.totalAdmin)}</b></div>
-        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:11.5px;"><span>🎧 Aksesoris</span><b>Rp ${fmtN(data.sAks)}</b></div>
-
-        <div style="background:linear-gradient(135deg,#2b67f6,#1a4fc4);color:white;margin:12px -14px -14px;padding:16px 14px 14px;border-radius:0 0 16px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:12px;font-weight:700;">💰 SISA CASH TOTAL</span>
-            <span style="font-size:20px;font-weight:900;">Rp ${fmtN(data.sisaCashSeluruhnya)}</span>
-          </div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.75);margin-top:6px;text-align:center;">
-            Cash: Rp ${fmtN(db.cash)} + Admin: Rp ${fmtN(data.totalAdmin)} + Aks: Rp ${fmtN(data.sAks)}
-          </div>
-        </div>
-      </div>
-
-      ${data.fTr.length > 0 ? `
-      <div style="background:white;border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 4px 15px rgba(43,103,246,0.08);border:1.5px solid #eef2ff;">
-        <div style="font-size:11px;font-weight:800;color:#2b67f6;margin-bottom:8px;">📋 Rincian Transaksi</div>
-        <table style="width:100%;border-collapse:collapse;font-size:10.5px;">
-          <thead><tr style="background:#f0f4ff;">
-            <th style="padding:5px 4px;text-align:left;font-weight:700;color:#2b67f6;border-bottom:2px solid #dde6ff;font-size:10px;">Nama</th>
-            <th style="padding:5px 4px;text-align:left;font-weight:700;color:#2b67f6;border-bottom:2px solid #dde6ff;font-size:10px;">Kat</th>
-            <th style="padding:5px 4px;text-align:right;font-weight:700;color:#2b67f6;border-bottom:2px solid #dde6ff;font-size:10px;">Nominal</th>
-            <th style="padding:5px 4px;text-align:right;font-weight:700;color:#2b67f6;border-bottom:2px solid #dde6ff;font-size:10px;">Adm</th>
-          </tr></thead>
-          <tbody>
-            ${data.fTr.map(t => `<tr>
-              <td style="padding:5px 4px;border-bottom:1px solid #f5f7ff;">${t.nm||'-'}</td>
-              <td style="padding:5px 4px;border-bottom:1px solid #f5f7ff;"><span style="background:#eef2ff;color:#2b67f6;border-radius:6px;padding:1px 5px;font-size:9px;font-weight:700;">${t.kat}</span></td>
-              <td style="padding:5px 4px;border-bottom:1px solid #f5f7ff;text-align:right;font-weight:600;">Rp ${fmtN(t.nom)}</td>
-              <td style="padding:5px 4px;border-bottom:1px solid #f5f7ff;text-align:right;font-weight:600;color:#f39c12;">Rp ${fmtN(t.adm)}</td>
-            </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>` : ''}
-
-      <div style="text-align:center;font-size:9.5px;color:#aaa;margin-top:8px;padding-bottom:8px;">
-        📄 Digenerate oleh Alfaza Cell App &nbsp;•&nbsp; ${new Date().toLocaleString('id-ID')}
-      </div>
-    </div>`;
-
-    document.body.appendChild(container);
-
-    try {
-        gsToast('⏳ Menyiapkan gambar laporan...');
-
-        const canvas = await html2canvas(container, {
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#eef2f9',
-            logging: false,
-            width: 420,
-            windowWidth: 452
-        });
-
-        document.body.removeChild(container);
-
-        const fileName = `Laporan_AlfazaCell_${data.tgl}.png`;
-
-        // Coba bagikan sebagai file gambar (Web Share API Level 2)
-        const tryShareFile = () => new Promise((resolve, reject) => {
-            canvas.toBlob(async (blob) => {
-                if (!blob) { reject(new Error('blob null')); return; }
-                const imgFile = new File([blob], fileName, { type: 'image/png' });
-                if (navigator.share && navigator.canShare && navigator.canShare({ files: [imgFile] })) {
-                    try {
-                        await navigator.share({
-                            title: `Laporan Alfaza Cell - ${data.tgl}`,
-                            text: `Laporan Harian Alfaza Cell\n${data.tglFmt}`,
-                            files: [imgFile]
-                        });
-                        resolve('shared');
-                    } catch (e) {
-                        if (e.name === 'AbortError') resolve('aborted');
-                        else reject(e);
-                    }
-                } else {
-                    reject(new Error('share_not_supported'));
-                }
-            }, 'image/png', 0.95);
-        });
-
-        // Coba download sebagai gambar (fallback)
-        const tryDownload = () => new Promise((resolve) => {
-            canvas.toBlob((blob) => {
-                if (!blob) { resolve(false); return; }
-                try {
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = fileName;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    setTimeout(() => URL.revokeObjectURL(url), 5000);
-                    resolve(true);
-                } catch(e) { resolve(false); }
-            }, 'image/png', 0.95);
-        });
-
-        try {
-            const result = await tryShareFile();
-            if (result === 'shared') gsToast('✅ Laporan berhasil dibagikan sebagai gambar!');
-            return;
-        } catch (e) {
-            // lanjut ke fallback download
-        }
-
-        // Fallback: download langsung
-        const downloaded = await tryDownload();
-        if (downloaded) {
-            gsToast('✅ Gambar PNG berhasil diunduh!');
-        }
-        // Selalu tampilkan modal dengan tombol download eksplisit
-        const dataUrl = canvas.toDataURL('image/png');
-        showImageModal(dataUrl, data.tgl);
-
-    } catch (err) {
-        if (container.parentNode) document.body.removeChild(container);
-        await gsAlert('Gagal membuat gambar laporan: ' + err.message, '❌ Error');
-    }
-}
-
-// Modal tampil gambar laporan agar user bisa screenshot / simpan
-function showImageModal(dataUrl, tgl) {
-    const existingModal = document.getElementById('img-laporan-modal');
-    if (existingModal) existingModal.remove();
-
-    const modal = document.createElement('div');
-    modal.id = 'img-laporan-modal';
-    modal.style.cssText = `
-        position:fixed;top:0;left:0;right:0;bottom:0;
-        background:rgba(0,0,0,0.88);z-index:99999;
-        display:flex;flex-direction:column;align-items:center;
-        justify-content:flex-start;padding:16px;overflow-y:auto;
-    `;
-    modal.innerHTML = `
-        <div style="max-width:420px;width:100%;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-            <span style="color:white;font-weight:700;font-size:14px;">📋 Laporan ${tgl}</span>
-            <button onclick="document.getElementById('img-laporan-modal').remove()"
-              style="background:rgba(255,255,255,0.2);color:white;border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
-          </div>
-
-          <!-- Tombol Download PNG langsung -->
-          <a id="btn-dl-png" href="${dataUrl}" download="Laporan_AlfazaCell_${tgl}.png"
-            style="display:block;width:100%;padding:13px;background:linear-gradient(135deg,#2b67f6,#1a4fc4);color:white;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;margin-bottom:8px;">
-            ⬇️ Download Gambar PNG
-          </a>
-
-          <!-- Tombol Share Gambar via Web Share API -->
-          <button id="btn-share-img" onclick="shareImageFromModal('${dataUrl}','Laporan_AlfazaCell_${tgl}.png')"
-            style="width:100%;padding:13px;background:linear-gradient(135deg,#25d366,#128c7e);color:white;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;">
-            📤 Share / Kirim Gambar
-          </button>
-
-          <p style="color:#ffdd88;font-size:11px;margin-bottom:8px;text-align:center;padding:8px;background:rgba(255,255,255,0.1);border-radius:8px;">
-            💡 Jika tombol Download tidak bekerja, tekan lama gambar di bawah lalu pilih <b>"Simpan Gambar"</b>
-          </p>
-
-          <img id="laporan-img-preview" src="${dataUrl}" style="width:100%;border-radius:12px;display:block;margin-bottom:12px;box-shadow:0 4px 20px rgba(0,0,0,0.5);" />
-
-          <button onclick="document.getElementById('img-laporan-modal').remove()"
-            style="width:100%;padding:12px;background:rgba(255,255,255,0.15);color:white;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;">
-            ✕ Tutup
-          </button>
-        </div>`;
-    document.body.appendChild(modal);
-
-    // Coba auto-trigger download PNG
-    setTimeout(() => {
-        const dlBtn = document.getElementById('btn-dl-png');
-        if (dlBtn) {
-            try { dlBtn.click(); } catch(e) {}
-        }
-    }, 400);
-}
-
-// Helper: share gambar dari modal
-async function shareImageFromModal(dataUrl, fileName) {
-    try {
-        const res = await fetch(dataUrl);
-        const blob = await res.blob();
-        const imgFile = new File([blob], fileName, { type: 'image/png' });
-        if (navigator.share && navigator.canShare && navigator.canShare({ files: [imgFile] })) {
-            await navigator.share({ title: fileName, files: [imgFile] });
-            gsToast('✅ Gambar berhasil dibagikan!');
-        } else if (navigator.share) {
-            await navigator.share({ title: fileName, url: dataUrl });
-            gsToast('✅ Berhasil dibagikan!');
-        } else {
-            gsToast('⚠️ Fitur share tidak tersedia di browser ini');
-        }
-    } catch(e) {
-        if (e.name !== 'AbortError') gsToast('⚠️ Gagal share: ' + e.message);
-    }
-}
-
-// ==================== DOWNLOAD PDF ====================
-async function downloadLaporanPDF() {
-    const data = buildLaporanData();
-    gsToast('⏳ Menyiapkan PDF laporan...');
-
-    try {
-        // Buat container HTML untuk PDF
-        const container = document.createElement('div');
-        container.style.cssText = 'width:420px;padding:20px;background:#eef2f9;font-family:sans-serif;position:fixed;left:-9999px;top:0;z-index:-1;';
-
-        container.innerHTML = `
-        <div style="background:white;border-radius:16px;padding:20px;box-shadow:0 4px 15px rgba(43,103,246,0.10);">
-          <div style="text-align:center;margin-bottom:16px;">
-            <div style="background:linear-gradient(135deg,#2b67f6,#1a4fc4);color:white;padding:10px 20px;border-radius:10px;display:inline-block;font-weight:800;font-size:16px;">
-              📊 LAPORAN HARIAN
-            </div>
-            <div style="font-size:13px;color:#888;margin-top:6px;">${data.tglFmt}</div>
-            <div style="font-size:18px;font-weight:800;color:#2b67f6;margin-top:4px;">ALFAZA CELL</div>
-          </div>
-
-          <table style="width:100%;border-collapse:collapse;margin-bottom:12px;">
-            <tr style="background:#f0f4ff;">
-              <td style="padding:8px 10px;font-weight:700;color:#555;font-size:12px;">🏦 Saldo Bank Masuk</td>
-              <td style="padding:8px 10px;text-align:right;font-weight:700;font-size:12px;">Rp ${fmtN(data.tModBank)}</td>
-            </tr>
-            <tr>
-              <td style="padding:8px 10px;font-weight:700;color:#555;font-size:12px;">💵 Saldo Cash Saat Ini</td>
-              <td style="padding:8px 10px;text-align:right;font-weight:700;font-size:12px;">Rp ${fmtN(data.saldo||0)}</td>
-            </tr>
-          </table>
-
-          <div style="background:#f0f4ff;border-radius:10px;padding:10px 12px;margin-bottom:12px;">
-            <div style="font-weight:800;color:#2b67f6;margin-bottom:8px;font-size:13px;">📈 PENJUALAN</div>
-            <table style="width:100%;border-collapse:collapse;">
-              <tr><td style="padding:4px 0;font-size:12px;color:#555;">Bank</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sBank)}</td></tr>
-              <tr><td style="padding:4px 0;font-size:12px;color:#555;">Flip</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sFlip)}</td></tr>
-              <tr><td style="padding:4px 0;font-size:12px;color:#555;">Dana</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sDana)}</td></tr>
-              <tr><td style="padding:4px 0;font-size:12px;color:#555;">App Pulsa</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sApp)}</td></tr>
-              <tr style="background:#dde6ff;"><td style="padding:6px 4px;font-weight:800;font-size:12px;border-radius:4px;">TOTAL PENJUALAN</td><td style="text-align:right;font-weight:800;font-size:12px;color:#2b67f6;">Rp ${fmtN(data.totalPenjualan)}</td></tr>
-            </table>
-          </div>
-
-          <table style="width:100%;border-collapse:collapse;margin-bottom:12px;">
-            <tr><td style="padding:5px 0;font-size:12px;color:#e74c3c;font-weight:700;">📉 Tarik Tunai</td><td style="text-align:right;font-size:12px;color:#e74c3c;font-weight:700;">-Rp ${fmtN(data.sTarik)}</td></tr>
-            <tr><td style="padding:5px 0;font-size:12px;color:#555;">💼 Admin</td><td style="text-align:right;font-size:12px;font-weight:600;color:#f39c12;">Rp ${fmtN(data.totalAdmin)}</td></tr>
-            <tr><td style="padding:5px 0;font-size:12px;color:#555;">🛒 Aksesoris</td><td style="text-align:right;font-size:12px;font-weight:600;">Rp ${fmtN(data.sAks)}</td></tr>
-          </table>
-
-          <div style="background:linear-gradient(135deg,#2b67f6,#1a4fc4);color:white;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-weight:700;font-size:13px;">💰 SISA CASH TOTAL</span>
-            <span style="font-weight:800;font-size:16px;">Rp ${fmtN(data.sisaCashSeluruhnya)}</span>
-          </div>
-
-          ${data.fTr.length > 0 ? `
-          <div style="margin-top:14px;">
-            <div style="font-weight:800;color:#2b67f6;margin-bottom:8px;font-size:12px;">📋 RINCIAN TRANSAKSI (${data.fTr.length})</div>
-            <table style="width:100%;border-collapse:collapse;font-size:10px;">
-              <thead><tr style="background:#2b67f6;color:white;">
-                <th style="padding:5px 4px;text-align:left;">Nama</th>
-                <th style="padding:5px 4px;text-align:left;">Kat</th>
-                <th style="padding:5px 4px;text-align:right;">Nominal</th>
-                <th style="padding:5px 4px;text-align:right;">Adm</th>
-              </tr></thead>
-              <tbody>
-                ${data.fTr.map((t,i) => `<tr style="background:${i%2===0?'#f8f9ff':'white'}">
-                  <td style="padding:5px 4px;border-bottom:1px solid #eee;">${t.nm||'-'}</td>
-                  <td style="padding:5px 4px;border-bottom:1px solid #eee;">${t.kat}</td>
-                  <td style="padding:5px 4px;border-bottom:1px solid #eee;text-align:right;">Rp ${fmtN(t.nom)}</td>
-                  <td style="padding:5px 4px;border-bottom:1px solid #eee;text-align:right;color:#f39c12;">Rp ${fmtN(t.adm)}</td>
-                </tr>`).join('')}
-              </tbody>
-            </table>
-          </div>` : ''}
-
-          <div style="text-align:center;font-size:9.5px;color:#aaa;margin-top:10px;padding-bottom:4px;">
-            📄 Alfaza Cell App • ${new Date().toLocaleString('id-ID')}
-          </div>
-        </div>`;
-
-        document.body.appendChild(container);
-
-        const canvas = await html2canvas(container, {
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#eef2f9',
-            logging: false,
-            width: 420,
-            windowWidth: 460
-        });
-
-        document.body.removeChild(container);
-
-        const imgData = canvas.toDataURL('image/png');
-        const { jsPDF } = window.jspdf;
-        const pdfW = 210; // A4 width mm
-        const pdfH = (canvas.height * pdfW) / canvas.width;
-        const pdf = new jsPDF({ orientation: pdfH > pdfW ? 'p' : 'l', unit: 'mm', format: [pdfW, pdfH] });
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
-
-        const fileName = `Laporan_AlfazaCell_${data.tgl}.pdf`;
-
-        // Coba share PDF
-        try {
-            const pdfBlob = pdf.output('blob');
-            const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
-            if (navigator.share && navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
-                await navigator.share({ title: `Laporan Alfaza Cell - ${data.tgl}`, files: [pdfFile] });
-                gsToast('✅ PDF berhasil dibagikan!');
-                return;
-            }
-        } catch(e) {
-            if (e.name === 'AbortError') return;
-        }
-
-        // Fallback: download PDF
-        try {
-            pdf.save(fileName);
-            gsToast('✅ PDF laporan berhasil diunduh!');
-        } catch(e) {
-            // Fallback manual: open PDF di tab baru
-            const pdfBlob = pdf.output('blob');
-            const url = URL.createObjectURL(pdfBlob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = fileName;
-            a.target = '_blank';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            setTimeout(() => URL.revokeObjectURL(url), 5000);
-            gsToast('✅ PDF laporan berhasil disimpan!');
-        }
-
-    } catch(err) {
-        gsAlert('Gagal membuat PDF: ' + err.message, '❌ Error');
-    }
-}
-
-// ==================== SHARE TEKS (WhatsApp / SMS / dll) ====================
-async function shareLaporanTeks() {
-    const data = buildLaporanData();
-
-    const teks =
+    let teks =
 `📱 *LAPORAN HARIAN ALFAZA CELL*
-📅 ${data.tglFmt}
+📅 ${tglFmt}
 ${'─'.repeat(32)}
 
 💰 *SALDO*
-• Saldo Bank Masuk : Rp ${fmtN(data.tModBank)}
-• Saldo Cash Kini  : Rp ${fmtN(db.cash)}
+• Saldo Bank Masuk : Rp ${fmtN(fTs.filter(x => x.jenis === 'Bank').reduce((a,b) => a + b.nom, 0))}
 
 📊 *PENJUALAN*
-• Bank     : Rp ${fmtN(data.sBank)}
-• Flip     : Rp ${fmtN(data.sFlip)}
-• Dana     : Rp ${fmtN(data.sDana)}
-• App Pulsa: Rp ${fmtN(data.sApp)}
-• *TOTAL   : Rp ${fmtN(data.totalPenjualan)}*
+• Bank     : Rp ${fmtN(sBank)}
+• Flip     : Rp ${fmtN(sFlip)}
+• Dana     : Rp ${fmtN(sDana)}
+• App Pulsa: Rp ${fmtN(sApp)}
+• *TOTAL   : Rp ${fmtN(totalPenjualan)}*
 
 📉 *PENGELUARAN & PENDAPATAN*
-• Tarik Tunai : -Rp ${fmtN(data.sTarik)}
-• Admin       : Rp ${fmtN(data.totalAdmin)}
-• Aksesoris   : Rp ${fmtN(data.sAks)}
+• Tarik Tunai : -Rp ${fmtN(sTarik)}
+• Sisa Cash Penjualan : Rp ${fmtN(db.cash)}
+• Admin       : Rp ${fmtN(totalAdmin)}
+• Aksesoris   : Rp ${fmtN(sAks)}
 
-💰 *SISA CASH TOTAL : Rp ${fmtN(data.sisaCashSeluruhnya)}*
-${'─'.repeat(32)}
-${data.fTr.length > 0 ? `📋 *RINCIAN TRANSAKSI* (${data.fTr.length} transaksi)\n` +
-    data.fTr.map((t,i) => `${i+1}. ${t.nm||'-'} | ${t.kat} | Rp ${fmtN(t.nom)} | Adm: Rp ${fmtN(t.adm)}`).join('\n') + '\n' + '─'.repeat(32) + '\n'
-: ''}
+💰 *SISA CASH TOTAL : Rp ${fmtN(sisaCashTotal)}*
+(Sisa Cash Penjualan + Admin + Aksesoris)
+
+⚖️ *CEK KESESUAIAN SALDO BANK*
+• Saldo Bank Catatan : Rp ${fmtN(db.bank)}
+• TOTAL Saldo Real Aplikasi : Rp ${fmtN(totalSaldoReal)}
+• ${db.bank !== totalSaldoReal ? 
+    `⚠️ Selisih: Rp ${fmtN(Math.abs(db.bank - totalSaldoReal))} (${db.bank > totalSaldoReal ? 'Lebih catatan' : 'Kurang catatan'})` : 
+    '✅ Sesuai'}
+
+${'─'.repeat(32)}`;
+
+    // Tambah history Saldo Real App
+    if (saldoRealHistory.length > 0) {
+        teks += `\n\n📋 *RIWAYAT SALDO REAL APP:*\n`;
+        saldoRealHistory.forEach((item, i) => {
+            teks += `${i+1}. ${item.jam} - Rp ${fmtN(item.nom)} ${item.ket ? '(' + item.ket + ')' : ''}\n`;
+        });
+        teks += `   *TOTAL: Rp ${fmtN(totalSaldoReal)}*\n`;
+    }
+
+    teks += `\n${'─'.repeat(32)}
 📄 Alfaza Cell App • ${new Date().toLocaleString('id-ID')}`;
 
-    // Coba Web Share API (teks) - kompatibel hampir semua Android WebView
+    // Coba Web Share API (teks)
     if (navigator.share) {
         try {
             await navigator.share({
-                title: `Laporan Alfaza Cell - ${data.tgl}`,
+                title: `Laporan Alfaza Cell - ${tgl}`,
                 text: teks
             });
             gsToast('✅ Laporan berhasil dibagikan!');
             return;
         } catch (e) {
-            if (e.name === 'AbortError') return; // user cancel
+            if (e.name === 'AbortError') return;
         }
     }
 
@@ -1725,11 +1397,6 @@ ${data.fTr.length > 0 ? `📋 *RINCIAN TRANSAKSI* (${data.fTr.length} transaksi)
     }
 }
 
-// Fungsi lama tetap ada untuk kompatibilitas
-async function shareLaporanPDF() {
-    await shareLaporanGambar();
-}
-
 // ==================== REFRESH ====================
 function refresh() {
     if(!db) return;
@@ -1738,7 +1405,7 @@ function refresh() {
     document.getElementById('s-tarik').innerText = fmtN(db.tarik);
     document.getElementById('s-aks').innerText = fmtN(db.aks);
     document.getElementById('s-admin').innerText = fmtN(db.admin);
-    localStorage.setItem('alfaza_v14_4', JSON.stringify(mainDB));
+    localStorage.setItem('alfaza_v14_7', JSON.stringify(mainDB));
 }
 
 // ==================== RESET ====================
@@ -1749,17 +1416,9 @@ async function resetSaldo() {
             mainDB[k].bank = 0; mainDB[k].cash = 0;
             mainDB[k].tarik = 0; mainDB[k].aks = 0; mainDB[k].admin = 0;
         });
-        localStorage.setItem('alfaza_v14_4', JSON.stringify(mainDB));
+        localStorage.setItem('alfaza_v14_7', JSON.stringify(mainDB));
         refresh();
         await gsAlert('Saldo telah direset ke 0', '✅ Berhasil');
-    }
-}
-
-async function resetData() {
-    const ok = await gsConfirm('Hapus semua data transaksi? Tindakan ini tidak bisa dibatalkan!', '⚠️ Konfirmasi');
-    if(ok) {
-        localStorage.clear();
-        location.href = location.href;
     }
 }
 
@@ -1771,7 +1430,6 @@ async function logout() {
 }
 </script>
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<!-- Akhir dari file -->
 </body>
 </html>
